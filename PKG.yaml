@@ -1,6 +1,6 @@
 schema_version: 1
 id: diary
-version: 0.2
+version: 0.3
 compat: ">= 0.2"
 members: [diary]
 connectors: []
@@ -10,6 +10,6 @@ uninstall:
   credentials: []
   bridges: []
   processes: []
-disclosure: "No network access, no credentials; installing grants the agent a management mandate over the personal diary under vault/diary/ — default capture is verbatim dictation; compose/polish/edit/delete are honored on explicit request (agent-written blocks marked 代笔), never unasked; diary content is instance data — never enters any framework/package repository, never projected into wiki by default (map on explicit request)."
+disclosure: "No network access, no credentials; installing is exposure consent — the personal diary under vault/diary/ becomes agent-readable corpus: entries are human writing (verbatim transcription; secretarial formatting on request), each write maps a registration-first proxy into wiki (pointer + index, no content copy); privacy applies at use — minimal quotes with backlinks in derivations, mechanical log lines, nothing relayed outside the instance without explicit request."
 menu:
-  diary: personal diary zone — vault-backed daily entries, agent-managed (verbatim default, delegated compose/polish/edit; optional package, install on demand)
+  diary: personal diary zone — vault-backed daily entries, wiki-mapped corpus (human writing; verbatim capture, secretarial delegation; optional package, install on demand)

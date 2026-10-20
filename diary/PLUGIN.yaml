@@ -1,24 +1,24 @@
 id: diary
-version: 0.2
+version: 0.3
 depends:
   - vault
   - structure
+  - mapping
   - log
 updated: 2026-10-20
 attachment:
   - "vault/diary/ — diary territory (the path is the territory; one md file per day, name = YYYY-MM-DD, free-prose body; final-state assets under the vault write model — agent writes append-only, edit/delete freedom belongs to the human)"
 fields:
   date: "scalar (optional) — entry date YYYY-MM-DD; the file name is authoritative, the frontmatter copy exists only for viewer convenience and may be absent entirely"
-inject: "Diary zone `vault/diary/` (personal daily writing, one md per day YYYY-MM-DD, true body in vault): install = mandate for agent management — capture defaults to verbatim dictation, delegated compose/polish/edit/delete honored on explicit request (agent-written blocks marked 代笔), never unasked; retrieval by date/range/keyword, quotes verbatim; no wiki projection, never auto-mapped (map on explicit request only); boundaries — calendar when, todo pending, diary lived; red lines — content is instance data: never into framework/package repos, wiki pages, or content-bearing log lines"
+inject: "Diary zone `vault/diary/` (personal daily writing, one md per day YYYY-MM-DD, expected 100% human writing — the agent transcribes dictation verbatim; delegation stays secretarial: format tidy-up / organizing on request): entries are ordinary vault assets — each write closes with a registration-first map into wiki/vault/ (proxy + index, one-line description, no content copy), query/grep/cite like any text; privacy applies at use: derivations quote minimally and backlink, log/hot stay mechanical, nothing leaves the instance without explicit request; boundaries — calendar when, todo pending, diary lived"
 usage:
-  - Writing, default posture (写日记 / 记一下…): verbatim dictation — land at `vault/diary/YYYY-MM-DD.md` (today), absent → create with minimal frontmatter (date only, optional) + a `# YYYY-MM-DD` heading; entries append as new `## HH:MM` blocks; the user's phrasing transcribed as spoken (typos and tone included), never invented
-  - Delegated management (帮我写日记 / 润色 / 改这段 / 删掉那段 — install grants the mandate, each act needs its explicit in-conversation instruction): compose = draft today's entry from the day's context (calendar / todo / conversation), the block heading tagged `（代笔）` so provenance stays honest; polish = reword the named block as instructed; edit/delete = execute the human's freedom verbatim — instance git is the history and undo net; never unasked, never batched silently
-  - Reading (翻日记 / 回顾 / 查某天): resolve by date, range (`YYYY-MM-DD..YYYY-MM-DD`), or keyword (grep under `vault/diary/`); relay entries verbatim with date + time provenance; a digest/summary is produced only on explicit request and clearly marked as such — the quotes stay verbatim underneath
-  - Placement sync: on install, `vault/diary/` is declared in `wiki/structure.md`'s structure block when that page exists (flat tolerance when absent — the page is never created on the diary's behalf); after human re-organization of vault, the same sync rule applies
-  - Projection policy: no default wiki projection, never auto-mapped; an explicit user request maps an entry through the normal map command (proxy page carries raw_file / raw_sha256, living under wiki/vault/ per the mapping contract)
-  - log discipline: after an append, one mechanical line (type other) — the fact of the write and its date, never content; reading and relaying write nothing
-  - Boundaries: calendar = what happens when, todo = what is pending, diary = what was lived; promoting diary material into notes/sessions goes only through the existing save path on explicit user request (derivations out-only)
+  - "Writing (写日记 / 记一下…): verbatim dictation — land at `vault/diary/YYYY-MM-DD.md` (today), absent → create with minimal frontmatter (date only, optional) + a `# YYYY-MM-DD` heading; entries append as new `## HH:MM` blocks; the user's phrasing as spoken, never invented"
+  - "Secretarial delegation (整理格式 / 调整结构 / 归并条目 — expected lightweight; one explicit instruction per act): tidy formatting, reorder or merge blocks as instructed; substantive drafting (帮我写) is rare, honored only on explicit ask with the block marked 代笔 — never unasked, never batched; instance git is the undo net"
+  - "Projection (install = exposure consent): every entry write closes with the normal map pipeline — registration-first proxy at `wiki/vault/<original-path>.md` (raw_file / raw_sha256, one-line description, no full copy — the mapping block's diary carve-out: summaries not enforced) + index linkage; human edits to a vault entry re-map on the next diary touch or on request"
+  - "Reading / querying: ordinary corpus treatment — grep and read `vault/diary/` directly, cite via [[wikilinks]] to the proxy pages; digests only on explicit request, clearly marked"
+  - "Use-time privacy: derivations out of the diary (notes conclusions, cross-references, profile evidence) quote minimally and backlink the source entry; log/hot lines stay mechanical (fact, never content); diary content never leaves the instance — external relay or framework/package repositories need an explicit request"
+  - "Boundaries: calendar = what happens when, todo = what is pending, diary = what was lived; promoting diary material into notes goes only through the existing save path on explicit user request (derivations out-only)"
 commands:
   - diary
 checks:
-  - "Semantic items (v0.1 manual, attached audit deferred): a diary entry landing outside vault/diary/ → error; an UNREQUESTED rewrite or deletion of existing blocks → error; an agent-composed block left without the 代笔 mark → warning; diary content leaking into wiki pages, notes, log lines, or any repository other than the instance's own vault → error; proxy pages auto-created without an explicit user request → warning; a file name not matching YYYY-MM-DD.md → info (naming drift is human freedom)"
+  - "Semantic items (v0.1 manual, attached audit deferred): a diary entry landing outside vault/diary/ → error; an UNREQUESTED rewrite or deletion of existing blocks → error; an agent-drafted block left without the 代笔 mark → warning; a written entry left without its wiki proxy at transaction close → warning; log/hot lines carrying diary content → error; diary content relayed outside the instance (external systems, framework/package repositories) without explicit request → error; a proxy body copying the entry's full text → warning (registration-first); a file name not matching YYYY-MM-DD.md → info (naming drift is human freedom)"
