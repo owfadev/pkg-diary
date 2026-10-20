@@ -1,0 +1,15 @@
+schema_version: 1
+id: diary
+version: 0.1
+compat: ">= 0.2"
+members: [diary]
+connectors: []
+depends: [framework]
+uninstall:
+  retains: [vault/diary/]
+  credentials: []
+  bridges: []
+  processes: []
+disclosure: "No network access, no credentials; manages personal diary entries under vault/diary/ (agent appends the user's words verbatim, edit/delete freedom belongs to the human); diary content is instance data — it never enters any framework/package repository and is never projected into wiki by default."
+menu:
+  diary: personal diary zone — vault-backed daily entries (write verbatim / read back; optional package, install on demand)

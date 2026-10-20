@@ -1,0 +1,23 @@
+id: diary
+version: 0.1
+depends:
+  - vault
+  - structure
+  - log
+updated: 2026-10-20
+attachment:
+  - "vault/diary/ — diary territory (the path is the territory; one md file per day, name = YYYY-MM-DD, free-prose body; final-state assets under the vault write model — agent writes append-only, edit/delete freedom belongs to the human)"
+fields:
+  date: "scalar (optional) — entry date YYYY-MM-DD; the file name is authoritative, the frontmatter copy exists only for viewer convenience and may be absent entirely"
+inject: "Diary zone `vault/diary/` (personal daily writing, one md per day YYYY-MM-DD, true body in vault): agent appends only — a new `## HH:MM` block into today's file (create when absent), user words verbatim, never invented or polished; edit/delete is human freedom; no wiki projection, never auto-mapped (map on explicit request only); retrieval reads files directly (date/range/keyword), quotes relayed verbatim; boundaries — calendar when, todo pending, diary lived; red lines — content is instance data: never into framework/package repos, wiki pages, or content-bearing log lines (mechanical append-fact only)"
+usage:
+  - Writing (写日记 / 记一下…): land at `vault/diary/YYYY-MM-DD.md` (today); absent → create with minimal frontmatter (date only, optional) + a `# YYYY-MM-DD` heading; further entries the same day append as new `## HH:MM` blocks — append-only, existing blocks never rewritten or deleted; transcription is verbatim (the user's phrasing, including typos and tone), never invented, never polished unless the user asks
+  - Reading (翻日记 / 回顾 / 查某天): resolve by date, range (`YYYY-MM-DD..YYYY-MM-DD`), or keyword (grep under `vault/diary/`); relay entries verbatim with date + time provenance; a digest/summary is produced only on explicit request and clearly marked as such — the quotes stay verbatim underneath
+  - Placement sync: on install, `vault/diary/` is declared in `wiki/structure.md`'s structure block when that page exists (flat tolerance when absent — the page is never created on the diary's behalf); after human re-organization of vault, the same sync rule applies
+  - Projection policy: no default wiki projection, never auto-mapped; an explicit user request maps an entry through the normal map command (proxy page carries raw_file / raw_sha256, living under wiki/vault/ per the mapping contract)
+  - log discipline: after an append, one mechanical line (type other) — the fact of the write and its date, never content; reading and relaying write nothing
+  - Boundaries: calendar = what happens when, todo = what is pending, diary = what was lived; promoting diary material into notes/sessions goes only through the existing save path on explicit user request (derivations out-only)
+commands:
+  - diary
+checks:
+  - "Semantic items (v0.1 manual, attached audit deferred): a diary entry landing outside vault/diary/ → error; an append that rewrites or deletes existing blocks → error; diary content leaking into wiki pages, notes, log lines, or any repository other than the instance's own vault → error; proxy pages auto-created without an explicit user request → warning; a file name not matching YYYY-MM-DD.md → info (naming drift is human freedom)"
